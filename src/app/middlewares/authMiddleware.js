@@ -4,6 +4,11 @@ import authConfig from '../../config/auth';
 
 export default async (req, res, next) => {
     const { authorization } = req.headers;
+    if (!authorization) {
+        return res
+            .status(401)
+            .json({ message: 'Required header authorization' });
+    }
     const [, token] = authorization.split(' ');
     if (!token) {
         return res.status(401).json({ message: 'Token not provided' });
