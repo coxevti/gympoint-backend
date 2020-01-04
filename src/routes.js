@@ -4,6 +4,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
+import RegistrationController from './app/controllers/RegistrationController';
 
 import userStoreValidation from './app/validations/userStore';
 import userUpdateValidation from './app/validations/userUpdate';
@@ -11,6 +12,7 @@ import sessionStoreValidation from './app/validations/sessionStore';
 import studentStoreValidation from './app/validations/studentStore';
 import studentUpdateValidation from './app/validations/studentUpdate';
 import planStoreValidation from './app/validations/planStore';
+import registrationStoreValidation from './app/validations/registrationStore';
 
 import authMiddleware from './app/middlewares/authMiddleware';
 
@@ -30,5 +32,18 @@ routes.get('/plans', PlanController.index);
 routes.post('/plans', planStoreValidation, PlanController.store);
 routes.put('/plans/:id', PlanController.update);
 routes.delete('/plans/:id', PlanController.delete);
+
+routes.get('/registrations', RegistrationController.index);
+routes.post(
+    '/registrations',
+    registrationStoreValidation,
+    RegistrationController.store
+);
+routes.put(
+    '/registrations',
+    registrationStoreValidation,
+    RegistrationController.update
+);
+routes.delete('/registrations/:id', RegistrationController.delete);
 
 export default routes;
