@@ -5,6 +5,7 @@ import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
 import RegistrationController from './app/controllers/RegistrationController';
+import CheckinController from './app/controllers/CheckinController';
 
 import userStoreValidation from './app/validations/userStore';
 import userUpdateValidation from './app/validations/userUpdate';
@@ -27,6 +28,9 @@ routes.put('/users', userUpdateValidation, UserController.update);
 
 routes.post('/students', studentStoreValidation, StudentController.store);
 routes.put('/students/:id', studentUpdateValidation, StudentController.update);
+
+routes.get('/students/:id/checkins', CheckinController.index);
+routes.post('/students/:id/checkins', CheckinController.store);
 
 routes.get('/plans', PlanController.index);
 routes.post('/plans', planStoreValidation, PlanController.store);
