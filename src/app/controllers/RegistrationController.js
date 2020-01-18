@@ -9,7 +9,10 @@ import ChangeOfInscriptionMail from '../jobs/ChangeOfInscriptionMail';
 
 class RegistrationController {
     async index(req, res) {
-        const registration = await Registration.findAll({ order: ['id'] });
+        const registration = await Registration.findAll({
+            attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
+            order: ['id'],
+        });
         return res.json(registration);
     }
 
