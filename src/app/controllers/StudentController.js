@@ -1,6 +1,18 @@
+import { Op } from 'sequelize';
 import Student from '../models/Student';
 
 class StudentController {
+    async index(req, res) {
+        const { q } = req.query;
+        const query = q
+            ? {
+                  where: { name: { [Op.like]: `%${q}%` } },
+              }
+            : { order: [['name', 'ASC']] };
+        const students = await Student.findAll(query);
+        return res.json(students);
+    }
+
     async store(req, res) {
         const { name, email, age, weight, height } = req.body;
         const student = await Student.findOne({ where: { email } });

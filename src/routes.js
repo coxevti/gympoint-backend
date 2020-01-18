@@ -30,6 +30,7 @@ routes.use(authMiddleware);
 
 routes.put('/users', userUpdateValidation, UserController.update);
 
+routes.get('/students', StudentController.index);
 routes.post('/students', studentStoreValidation, StudentController.store);
 routes.put('/students/:id', studentUpdateValidation, StudentController.update);
 
